@@ -63,6 +63,16 @@ public class SOContainerViewController: UIViewController, UIGestureRecognizerDel
      */
     public var heightOffsetForPanGestureRecognizer: Int = 0
     
+    
+    
+    
+    // removing pan gesture as it conflicts sometimes with UITableView gestures or any other conflicts
+    public func removeGestureRecognizer() {
+        if let vc = _topViewController {
+            vc.view.removeGestureRecognizer(createPanGestureRecognizer)
+        }
+    }
+    
     /**
      A view controller that is currently presented to user.
      
@@ -116,14 +126,7 @@ public class SOContainerViewController: UIViewController, UIGestureRecognizerDel
      Usually you have to set it only once, when you prepare an instance of `SOContainerViewController` to be presented.
      */
     
-    
-    // removing pan gesture as it conflicts sometimes with UITableView gestures or any other conflicts
-    public func removeGestureRecognizer() {
-        if let vc = _topViewController {
-            vc.view.removeGestureRecognizer(createPanGestureRecognizer)
-        }
-    }
-    
+ 
     
     public var sideViewController: UIViewController? {
         get {
